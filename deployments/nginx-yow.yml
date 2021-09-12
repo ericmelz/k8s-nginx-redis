@@ -1,1 +1,25 @@
-stuff goes here
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-yow
+spec:
+  replicas: 64
+  selector:
+    matchLabels:
+      app: nginx-yow
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-yow
+    spec:
+      containers:
+      - name: nginx-yow-pod
+        image: ericmelz/nginx-yow:latest
+        ports:
+        - containerPort: 80
