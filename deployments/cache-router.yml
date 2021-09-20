@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache-router
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cache-router
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: cache-router
+    spec:
+      containers:
+      - name: cache-router-pod
+        image: ericmelz/cache-router:latest
+        ports:
+        - containerPort: 8081

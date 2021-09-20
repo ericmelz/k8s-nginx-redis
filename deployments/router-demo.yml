@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: router-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: router-demo
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: router-demo
+    spec:
+      containers:
+      - name: router-demo-pod
+        image: ericmelz/router-demo:latest
+        ports:
+        - containerPort: 8080
