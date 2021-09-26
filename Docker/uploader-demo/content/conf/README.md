@@ -15,7 +15,6 @@ abc
 ## Hit a non-existing page
 Here we get a fancy 404 message back.  Note that if the page is already there, try another random string for the `url` query param
 ```
-% curl "http://54.151.101.216:8080/?url=abcdefgh"    
 % curl "http://54.151.101.216:8080/?url=abcdefgh"
 8082: Your page was not found, check again later, we're writing it to disk...
 pageUrl=abcdefgh
